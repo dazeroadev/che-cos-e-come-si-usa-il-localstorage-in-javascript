@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="it">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>localStorage in JavaScript </title>
+	</head>
+
+	<body>
+
+		<h1>Uso di localStorage</h1>
+		<input id="name" type="text" name="name" />
+		<button onclick="salvaNome()">Salva Nome</button>
+		<button onclick="mostraNome()">Mostra Nome</button>
+		<button onclick="rimuoviNome()">Rimuovi Nome</button>
+		<button onclick="cancellaTutto()">Cancella Tutto</button>
+
+		<script>
+
+			function salvaNome() {
+				const input = document.getElementById('name');
+				const value = input.value;
+				console.log(value);
+				// Codice per inserire l’informazione nel localStorage
+				localStorage.setItem('nome', value);
+			}
+
+			function mostraNome() {
+				// Codice per prendere l’informazione dal localStorage
+				const nome = localStorage.getItem('nome');
+				if (nome) {
+					alert("Il nome salvato è: " + nome);
+				} else {
+					alert("Nessun nome trovato.");
+				}
+			}
+
+			function rimuoviNome() {
+				// Codice per rimuovere l’informazione dal localStorage
+				localStorage.removeItem('nome');
+				alert("Nome rimosso!");
+			}
+
+			function cancellaTutto() {
+				// Codice per cancellare tutti i dati dal localStorage
+				localStorage.clear();
+				alert("Tutti i dati sono stati cancellati!");
+			}
+
+			// Inserire un array nel localStorage
+			const frutta = ["mela", "pera", "banana"];
+			const frutta2 = ["mela", "pera", "banana"];
+			localStorage.setItem('frutta2', frutta2);
+			localStorage.setItem('frutta', JSON.stringify(frutta));
+			const fruttaLocal = localStorage.getItem('frutta');
+			const fruttaArray = JSON.parse(fruttaLocal);
+			console.log(fruttaArray[0]);
+
+		</script>
+	</body>
+
+</html>
